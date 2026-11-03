@@ -43,6 +43,10 @@ td,th{padding:6px;border-bottom:1px solid var(--line);text-align:left;white-spac
 .n{text-align:right;font-variant-numeric:tabular-nums}.lead{white-space:normal;font-size:13px;color:var(--ink2);min-width:9em}
 .sep{border-left:2px solid var(--line)}.own{font-weight:700;color:var(--s1)}
 .tbl td:first-child,.tbl th:first-child{position:sticky;left:0;background:var(--card);z-index:1}
+.conds{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px 20px}.conds h3{font-size:15px;margin:4px 0}
+.conds ul{list-style:none;margin:0;padding:0}.conds li{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--line)}
+.conds li i{flex:none;width:12px;height:12px;border-radius:50%;margin-top:5px;border:2px solid var(--line)}
+.conds li.lit.red i{background:var(--s2);border-color:var(--s2)}.conds li.lit.blue i{background:var(--s1);border-color:var(--s1)}
 nav.arch{display:flex;flex-wrap:wrap;gap:6px}nav.arch a{font-size:13px;color:var(--ink2)}
 
 .chart.tall{height:720px}.chip{display:inline-block;padding:1px 7px;border-radius:9px;font-size:12px;margin:1px 2px;
