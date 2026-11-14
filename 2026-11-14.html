@@ -23,6 +23,9 @@ background:transparent;color:var(--ink2);cursor:pointer}.chart-tabs button.on{ba
 .sw.s0{background:var(--s0)}.sw.s1{background:var(--s1)}.sw.s2{background:var(--s2)}.sw.s3{background:var(--bad)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:10px}
 .idx{border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer}.idx.owner{border-color:var(--ink2)}
+.idx{transition:box-shadow .15s,background .15s}.idx:hover{background:var(--grid)}
+.idx.sel{border-color:var(--s1);box-shadow:inset 0 0 0 2px var(--s1)}
+.idx.sel .idx-h::after{content:'📈 圖表顯示中';margin-left:auto;font-size:12px;font-weight:600;color:var(--s1)}
 .idx-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.idx-h b{font-size:16px}
 .role{font-size:12px;padding:1px 8px;border-radius:999px;background:var(--grid);color:var(--ink2)}.owner .role{background:var(--ink);color:var(--card)}
 .stage{margin:6px 0;font-weight:600}
@@ -62,7 +65,7 @@ nav.arch{display:flex;flex-wrap:wrap;gap:6px}nav.arch a{font-size:13px;color:var
 .watch .now{font-variant-numeric:tabular-nums}.wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px 20px}
 .wgrid h3{font-size:15px;margin:8px 0 2px}
 </style></head><body><main>
-<h1>趨勢雷達早報</h1><div class="mute">2026-11-14 17:50 產生・台股用前一交易日收盤、美股用昨晚收盤・非投資建議</div>
+<h1>趨勢雷達早報</h1><div class="mute">2026-11-14 17:53 產生・台股用前一交易日收盤、美股用昨晚收盤・非投資建議</div>
 <section class="card strat"><h2>🧭 v6.1 策略 <span class="mute">（2026-11-13 收盤判斷 → 下一個交易日收盤調整）</span></h2>
 <div class="big"><div><div class="mute">大方向</div><div class="reg">🍂 多頭尾聲</div>
 <div class="mute">2026-11-10 起</div></div>
@@ -199,6 +202,7 @@ for (const key of ['tw','us']) {
     const s = m.chart[name];
     ch.setOption(Object.assign(base(),{series:[line('收盤',zip(s.d,s.c),C.s0,1.5),line('87MA',zip(s.d,s.m87),C.s1),line('284MA',zip(s.d,s.m284),C.s2)]}),true);
     tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.n===name));
+    document.querySelectorAll(`.idx[data-chart="${key}"]`).forEach(el=>el.classList.toggle('sel',el.dataset.name===name));
   };
   for (const name of m.order) {const b=document.createElement('button'); b.textContent=name; b.dataset.n=name; b.onclick=()=>show(name); tabs.appendChild(b);}
   document.querySelectorAll(`.idx[data-chart="${key}"]`).forEach(el=>el.onclick=()=>{show(el.dataset.name); ch.getDom().scrollIntoView({behavior:'smooth',block:'center'});});
